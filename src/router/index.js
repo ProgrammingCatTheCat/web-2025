@@ -1,5 +1,5 @@
 // src/router/index.js
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import Main from '../components/Main.vue' // 导入 Main.vue
 import Login from '../components/Login.vue' // 导入 Login.vue
 
