@@ -1,0 +1,11 @@
+/* src/assets/main.css */
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('./background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; /* 防止背景图片重复 */
+    background-attachment: fixed; /* 使背景图片固定，不随滚动条滚动 */
+    height: 100vh; /* 使背景图片高度覆盖整个视口 */
+  }
