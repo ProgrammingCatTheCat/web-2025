@@ -1,6 +1,5 @@
 <script setup>
   import { useRouter } from 'vue-router' // 导入 useRouter
-
   const router = useRouter() // 创建 router 实例
 
   const navigateToDiary = () => {
