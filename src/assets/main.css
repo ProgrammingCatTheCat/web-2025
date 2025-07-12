@@ -9,3 +9,28 @@ body {
     background-attachment: fixed; /* 使背景图片固定，不随滚动条滚动 */
     height: 100vh; /* 使背景图片高度覆盖整个视口 */
   }
+
+#app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.button-style {
+    width: 200px;
+    height: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 20px; /* 按钮的文字大小 */
+    color: white; /* 按钮的文字颜色 */
+    background-color: #f9c90a; /* 按钮的背景颜色 */
+    border: none; /* 去掉边框 */
+    border-radius: 10px; /* 圆角 */
+    cursor: pointer; /* 鼠标悬停时显示为指针 */
+    transition: background-color 0.3s; /* 背景颜色过渡效果 */
+}
+
+.sticker_type {
+    width: 50px !important;
+    height: 50px !important;
+}

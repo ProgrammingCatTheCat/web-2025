@@ -2,7 +2,6 @@
   "name": "web",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -11,15 +10,22 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@vueup/vue-quill": "^1.2.0",
     "axios": "^1.9.0",
     "cors": "^2.8.5",
+    "dompurify": "^3.2.6",
     "dotenv": "^16.5.0",
     "element-plus": "^2.9.7",
     "express": "^5.1.0",
-    "mongoose": "^8.14.1",
+    "marked": "^15.0.12",
+    "mongodb": "^6.16.0",
+    "mongoose": "^8.15.0",
+    "quill": "^2.0.3",
     "vue": "^3.5.13",
     "vue-route": "^1.1.5",
-    "vue-router": "^4.5.0"
+    "vue-router": "^4.5.0",
+    "vue3-google-map": "^0.22.0",
+    "vue3-quill": "^0.3.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",

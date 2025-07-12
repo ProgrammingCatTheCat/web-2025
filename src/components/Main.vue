@@ -4,17 +4,38 @@
 
   const navigateToDiary = () => {
     console.log('Navigating to diary...')
-    router.push({ name: 'Diary' }) // 编程导航到登录页面
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user && user.isLoggedIn) {
+      console.log('当前用户:', user.email);
+      router.push({ name: 'Diary' }) // 编程导航到登录页面
+    }
+    else{
+      alert('Please login/register first :)')
+    }
   }
 
   const navigateToConsultation = () => {
     console.log('Navigating to consultation...')
-    router.push({ name: 'Consultation' }) // 编程导航到主页面
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user && user.isLoggedIn) {
+      console.log('当前用户:', user.email);
+      router.push({ name: 'Consultation' })
+    }
+    else{
+      alert('Please login/register first :)')
+    }
   }
 
   const navigateToCommunity = () => {
     console.log('Navigating to community...')
-    router.push({ name: 'Community' }) // 编程导航到主页面
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user && user.isLoggedIn) {
+      console.log('当前用户:', user.email);
+      router.push({ name: 'Community' })
+    }
+    else{
+      alert('Please login/register first :)')
+    }
   }
 </script>
 

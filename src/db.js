@@ -1,23 +1,29 @@
-const mongoose = require('mongoose');
+const MongoClient = require('mongodb').MongoClient;
+const url = 'mongodb://localhost:27017';  // MongoDB的连接URL
 
-// 连接 MongoDB 数据库
-mongoose.connect('mongodb://admin:admin@localhost:27017/mongo_vue?authSource=admin', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+MongoClient.connect(url, { useUnifiedTopology: true }, (err, client) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
 
-// 获取数据库连接对象
-const db = mongoose.connection;
-
-// 监听连接成功的事件
-db.on('connected', () => {
   console.log('Connected to MongoDB');
-});
 
-// 监听连接失败的事件
-db.on('error', (error) => {
-  console.error('MongoDB connection error:', error);
-});
+  const db = client.db('test_db');  // 替换为你的数据库名称
 
-// 导出数据库连接模块
-module.exports = db;
+  // 在这里添加你的数据库操作逻辑
+  const collection = db.collection('users');  // 替换为你的集合名称
+
+  // 插入一条数据
+  const document = { name: 'John', age: 30 };
+  collection.insertOne(document, (err, result) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+
+    console.log('Data inserted');
+  });
+
+  client.close();  // 断开与数据库的连接
+});

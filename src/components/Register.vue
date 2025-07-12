@@ -4,18 +4,97 @@
     
       <div class="main">
         <div class="login-form">
-            <input type="text" placeholder="User name" v-model="email" class="input-field">
+            <input type="text" placeholder="User name" v-model="username" class="input-field">
             <div class="email-container">
                 <input type="text" placeholder="Email Address" v-model="email" class="input-field">
                 <button class="send-code-button" @click="sendVerifyCode">Send Verify Code</button>
             </div>
             <input type="password" placeholder="Password" v-model="password" class="input-field">
-            <input type="text" placeholder="Verify code" v-model="email" class="input-field">
-            <button class="login-button" @click="login">register & log in</button>
+            <input type="text" placeholder="Verify code" v-model="verifycode" class="input-field">
+            <button class="login-button" @click="register">register & log in</button>
         </div>
       </div>
     </div>
   </template>
+
+  <script>
+    export default {
+      name: 'register',
+     data() {
+      return {
+        username: '',
+        email: '',
+        password: '',
+        verifycode: ''
+      };
+     },
+     methods: {
+      async register() {
+          try{
+            const response = await fetch('http://localhost:8080/api/auth/register', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                username: this.username,
+                email: this.email,
+                password: this.password,
+                verifycode: this.verifycode
+              })
+            });
+            if (response.ok) {
+              const data = await response.json();
+              console.log(data);
+
+              localStorage.setItem('user', JSON.stringify({
+                email: this.email,
+                isLoggedIn: true
+              }));
+
+              this.$router.push({ name: 'Main' });
+            } else {
+              const errorData = await response.json();
+              console.log(errorData);
+              alert('failed to register, ' + errorData.message);
+            }
+          }
+          catch (error) {
+            console.error('Error during registration:', error);
+            alert('failed to register');
+          }
+      },
+
+      async sendVerifyCode() {
+        try {
+          const response = await fetch('http://localhost:8080/api/auth/sendVerifyCode', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              email: this.email
+            })
+          });
+          if (response.ok) {
+            const data = await response.json();
+            console.log(data);
+            this.verifycode = data.verifycode;
+            alert('Verify code sent to your email.');
+          } else {
+            const errorData = await response.json();
+            console.log(errorData);
+            alert('failed to send verify code, ' + errorData.message);
+          }
+        }
+        catch (error){
+          console.error('Error during sending verify code:', error);
+          alert('failed to send verify code');
+        }
+      },
+     }
+    }
+  </script>
     
   <style scoped>
   .header {

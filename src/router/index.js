@@ -2,6 +2,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Main from '../components/Main.vue' // 导入 Main.vue
 import Login from '../components/Login.vue' // 导入 Login.vue
+import PreviewDiary from '../components/PreviewDiary.vue'
 
 const routes = [
   {
@@ -33,6 +34,11 @@ const routes = [
     path: '/community',
     name: 'Community',
     component: () => import('../components/Community.vue') 
+  },
+  {
+    path: '/preview',
+    name: 'Preview',
+    component: () => import('../components/Previewdiary.vue')
   }
 ]
 

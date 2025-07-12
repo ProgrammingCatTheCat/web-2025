@@ -27,11 +27,40 @@
    },
    methods: {
     async login() {
-      console.log('Login button clicked');
-      console.log('Email:', this.email);
-      console.log('Password:', this.password);
-      // 添加其他登录逻辑，如验证用户名和密码等
-    },
+      try {
+        const response = await fetch('http://localhost:8080/api/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email: this.email,
+            password: this.password
+          })
+        });
+        if (response.ok){
+          const data = await response.json();
+          console.log(data);
+
+          localStorage.setItem('user', JSON.stringify({
+            email: this.email,
+            isLoggedIn: true
+          }));
+
+          this.$router.push({ name: 'Main' });
+          console.log('log in succeed:');
+          alert('Login succeed. Welcome!');
+        }
+        else{
+          const errorData = await response.json();
+          console.log(errorData);
+          alert('Login failed. Please check your email and password.');
+        }
+      } catch (error) {
+        console.error('Error during log in:', error);
+        alert('Login failed. Please check your email and password.');
+      }
+  },
     forgotPassword() {
       console.log('Forgot password button clicked');
     },
